@@ -1,0 +1,330 @@
+@font-face {
+  font-family: Aldo;
+  src: url("../assests/AldotheApache.ttf");
+}
+
+@font-face {
+  font-family: ice;
+  src: url("../assests/Iceberg-Regular.ttf");
+}
+
+@font-face {
+  font-family: quantico;
+  src: url("../assests/Quantico-Regular.ttf");
+}
+
+/* Navbar styles starts here */
+
+.nav-col {
+  position: relative;
+  z-index: 8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 90px; */
+  padding: 68px 65px 20px;
+}
+
+.nav-col .nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links .nav-item {
+  list-style: none;
+  padding-right: 30px;
+}
+
+/* Navbar styles end here */
+
+/* welcome starts here */
+
+.welcome-col {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -90px;
+}
+
+.drone-col {
+  flex: 1;
+}
+
+.drone-col img {
+  object-fit: cover;
+  width: 104%;
+  height: 100%;
+}
+
+.drone-gist-col {
+  flex: 1;
+}
+
+.drone-gist-col h1 {
+  font-size: 30px;
+  color: #27ffff;
+  font-family: ice;
+}
+
+.drone-gist-col button {
+  background-color: transparent;
+  border: 1px solid #fff !important;
+  padding: 25px 20px;
+  outline: none;
+  border: none;
+  font-family: ice;
+  font-size: 40px;
+  color: #fff;
+  margin: 26px 0 22px;
+  cursor: pointer;
+  transition: 0.8s;
+}
+
+.drone-gist-col button:hover {
+  background-color: #7e7e7e;
+}
+
+.drone-gist-col button a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.drone-gist-col p {
+  width: 75%;
+  font-size: 20px;
+  font-family: quantico;
+  line-height: 28.6px;
+}
+
+/* welcome stops here */
+
+/* Minting style starts here */
+.mint-col {
+  position: relative;
+  z-index: 9;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mint-col .claim {
+  font-size: 40px;
+  font-family: ice;
+  color: #27ffff;
+  margin: -140px 0 10px;
+  text-align: center;
+}
+#address-text {
+  padding: 20px 10px;
+  font-size: 25px;
+  font-family: ice;
+  color: #27ffff;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.mint-col .connect {
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #fff;
+  outline: none;
+  padding: 20px 85px;
+  font-family: ice;
+  font-size: 40px;
+  cursor: pointer;
+  transition: 0.4s;
+  z-index: 7;
+}
+
+.mint-num {
+  color: #fff;
+  background-color: transparent;
+
+  font-family: ice;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.4s;
+  z-index: 7;
+}
+
+.mint-num button {
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #fff;
+  font-size: 30px;
+  margin: 20px 6px;
+  outline: none;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+.mint-num button:hover {
+  border: 3px solid #fff;
+  transition: 0.4s;
+}
+
+.mint-col .connect:hover {
+  animation: blinker 0.3s ease-in-out 7;
+  color: #fff;
+}
+
+.claim a {
+  color: #27ffff;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.8s;
+}
+
+.claim a:hover {
+  text-decoration: underline;
+}
+
+.timer-title {
+  font-family: ice;
+  font-size: 40px;
+  color: #27ffff;
+  cursor: pointer;
+  transition: 0.8s;
+  margin-top: -100px;
+}
+.timer {
+  font-family: ice;
+  font-size: 40px;
+  color: #27ffff;
+  cursor: pointer;
+  transition: 0.8s;
+  margin-top: 10px;
+}
+
+@keyframes blinker {
+  50% {
+    background-color: #ffffff20;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
+
+.drone-bt-icon {
+  position: absolute;
+  width: 50%;
+  bottom: -250px;
+  left: -100px;
+  z-index: 2;
+}
+
+.drone-bt-icon img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .welcome-col {
+    flex-direction: column;
+    margin-top: -50px;
+  }
+
+  .drone-gist-col {
+    width: 90%;
+  }
+
+  .drone-col img {
+    object-fit: cover;
+    width: 90%;
+    height: 100%;
+  }
+
+  .drone-gist-col h1 {
+    font-size: 24px;
+  }
+
+  .drone-gist-col button {
+    font-size: 24px;
+    width: 90%;
+  }
+
+  .drone-gist-col p {
+    width: 90%;
+    font-size: 16px;
+    font-family: quantico;
+    line-height: 28.6px;
+  }
+
+  .nav-col {
+    padding: 28px 30px 20px;
+  }
+
+  .mint-col .connect {
+    padding: 20px 55px;
+    font-family: ice;
+    font-size: 24px;
+  }
+
+  .mint-col .claim {
+    font-size: 24px;
+    margin: 0px 0 45px;
+    text-align: center;
+  }
+
+  #address-text p {
+    font-size: 10px;
+  }
+
+  .nav-links .nav-item {
+    padding-right: 15px;
+  }
+}
+
+.btn-modal {
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
+}
+
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 100;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+.modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #000000;
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+  z-index: 100;
+}
+
+.modal-content img {
+  margin: auto;
+  display: block;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
