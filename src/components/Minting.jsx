@@ -58,7 +58,7 @@ const Minting = () => {
   }, []);
 
   useEffect(() => {
-    window.ethereum.on("accountsChanged", connectWallet);
+    if (window.ethereum) window.ethereum.on("accountsChanged", connectWallet);
   }, []);
 
   const connectWallet = async () => {
