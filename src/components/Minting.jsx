@@ -17,7 +17,7 @@ const Minting = () => {
   const [num, setNum] = useState(0);
   const [claims, setClaims] = useState(0);
 
-  const [partyTime, setPartyTime] = useState(false);
+  const [partyTime, setPartyTime] = useState(true);
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -118,6 +118,10 @@ const Minting = () => {
   };
 
   const mint = async () => {
+    if (num == 0) {
+      alert.error("Sorry, cannot mint 0 drones.");
+      return;
+    }
     // window.ethereum.request
     if (!window.ethereum || !window.ethereum.isMetaMask) {
       console.log("No metamask");
