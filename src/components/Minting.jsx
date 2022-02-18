@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import drone from "../assests/001.gif";
-import { ethers } from "ethers";
-import ABI from "../Blockchain/ABI.json";
-import { useAlert } from "react-alert";
-import loading from "../assests/loading.gif";
-import Timer from "./Timer";
+import React, { useState, useEffect } from 'react';
+import drone from '../assests/001.gif';
+import { ethers } from 'ethers';
+import ABI from '../Blockchain/ABI.json';
+import { useAlert } from 'react-alert';
+import loading from '../assests/loading.gif';
+import Timer from './Timer';
 
-const nftaddress = "0x5a37bC98D91049fE5fbdE9B7B9edAea719ce877A";
+const nftaddress = '0x5a37bC98D91049fE5fbdE9B7B9edAea719ce877A';
 const Minting = () => {
   const alert = useAlert();
-  const [status, setStatus] = useState("init");
+  const [status, setStatus] = useState('init');
 
   const [mintComplete, setMintComplete] = useState(false);
   const [address, setaddress] = useState(null);
@@ -28,7 +28,7 @@ const Minting = () => {
   }, [address]);
 
   useEffect(() => {
-    const target = new Date("02/02/2022 12:00:00 PM UTC");
+    const target = new Date('02/02/2022 12:00:00 PM UTC');
     // const target = new Date("01/31/2022 06:44:00 PM UTC");
 
     const interval = setInterval(() => {
@@ -58,81 +58,81 @@ const Minting = () => {
   }, []);
 
   useEffect(() => {
-    if (window.ethereum) window.ethereum.on("accountsChanged", connectWallet);
+    if (window.ethereum) window.ethereum.on('accountsChanged', connectWallet);
   }, []);
 
   const connectWallet = async () => {
-    console.log("CONNET WALLET");
+    console.log('CONNET WALLET');
     // window.ethereum.request
     if (!window.ethereum || !window.ethereum.isMetaMask) {
-      console.log("No metamask");
-      alert.error("Please use a browser with Metamask");
+      console.log('No metamask');
+      alert.error('Please use a browser with Metamask');
       return;
     }
     //check chain id
-    const chainId = await window.ethereum.request({ method: "eth_chainId" });
-    if (chainId !== "0x1") {
-      console.log("Wrogn Chain");
-      alert.error("Please use Etherium Mainnet ");
+    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    if (chainId !== '0x1') {
+      console.log('Wrogn Chain');
+      alert.error('Please use Etherium Mainnet ');
       return;
     }
     try {
       const provider = new ethers.providers.Web3Provider(
         window.ethereum,
-        "any"
+        'any'
       );
       // Prompt user for account connections
-      await provider.send("eth_requestAccounts", []);
+      await provider.send('eth_requestAccounts', []);
       const signer = provider.getSigner();
 
       let address = await signer.getAddress();
-      console.log("ADDRESS", address);
+      console.log('ADDRESS', address);
       setaddress(address);
-      setStatus("connected");
+      setStatus('connected');
     } catch (err) {
       console.log(err);
-      if (err.message.includes("unknown account")) {
-        alert.error("Please connect your Metamask Wallet!");
-      } else alert.error("Sorry, An Error Occured!");
+      if (err.message.includes('unknown account')) {
+        alert.error('Please connect your Metamask Wallet!');
+      } else alert.error('Sorry, An Error Occured!');
       //   setShowMintedModal(false);
     }
   };
 
   const findClaims = async () => {
     if (address == null) {
-      alert.error("Could not get address from metamas!");
+      alert.error('Could not get address from metamas!');
       return;
     }
     try {
       const provider = new ethers.providers.Web3Provider(
         window.ethereum,
-        "any"
+        'any'
       );
       const signer = provider.getSigner();
       const contract = new ethers.Contract(nftaddress, ABI, signer);
       const claim = await contract.availableClaims(address);
       setClaims(claim.toNumber());
     } catch (err) {
-      console.log("error finding claims", err);
+      console.log('error finding claims', err);
     }
   };
 
   const mint = async () => {
     if (num == 0) {
-      alert.error("Sorry, cannot mint 0 drones.");
+      alert.error('Sorry, cannot mint 0 drones.');
       return;
     }
     // window.ethereum.request
     if (!window.ethereum || !window.ethereum.isMetaMask) {
-      console.log("No metamask");
-      alert.error("Please use a browser with Metamask");
+      console.log('No metamask');
+      alert.error('Please use a browser with Metamask');
       return;
     }
     //check chain id
-    const chainId = await window.ethereum.request({ method: "eth_chainId" });
-    if (chainId !== "0x1") {
-      console.log("Wrogn Chain");
-      alert.error("Please use Etherium Mainnet ");
+    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    if (chainId !== '0x1') {
+      console.log('Wrogn Chain');
+      alert.error('Please use Etherium Mainnet ');
       return;
     }
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -158,21 +158,21 @@ const Minting = () => {
 
       // console.log(monstersarray);
       setIsloading(false);
-      alert.success("Minted Successfully!");
+      alert.success('Minted Successfully!');
       findClaims();
       setNum(0);
     } catch (err) {
       console.log(err);
       setIsloading(false);
-      if (err.message.includes("unknown account")) {
-        alert.error("Please connect your Metamask Wallet!");
-      } else if (err.message.includes("Exceeds MAX_Supply")) {
-        alert.error("Payment Failed,exeeded max supply!");
-      } else if (err.message.includes("insufficient funds")) {
-        alert.error("Payment Failed,Insufficient funds in your account!");
-      } else if (err.message.includes("not on the White List")) {
-        alert.error("Payment Failed,Your account is not on the Whitelist!");
-      } else alert.error("Payment Failed, please try again!");
+      if (err.message.includes('unknown account')) {
+        alert.error('Please connect your Metamask Wallet!');
+      } else if (err.message.includes('Exceeds MAX_Supply')) {
+        alert.error('Payment Failed,exeeded max supply!');
+      } else if (err.message.includes('insufficient funds')) {
+        alert.error('Payment Failed,Insufficient funds in your account!');
+      } else if (err.message.includes('not on the White List')) {
+        alert.error('Payment Failed,Your account is not on the Whitelist!');
+      } else alert.error('Payment Failed, please try again!');
       //   setShowMintedModal(false);
     }
   };
@@ -180,11 +180,11 @@ const Minting = () => {
   const InitComponent = () => {
     return (
       <>
-        <div className="drone-bt-icon">
-          <img src={drone} alt="drone" />
+        <div className='drone-bt-icon'>
+          <img src={drone} alt='drone' />
         </div>
-        <p className="claim">CLAIM IS LIVE</p>
-        <button onClick={connectWallet} className="connect">
+        <p className='claim'>CLAIM IS LIVE</p>
+        <button onClick={connectWallet} className='connect'>
           CONNECT METAMASK
         </button>
       </>
@@ -194,34 +194,39 @@ const Minting = () => {
   const ClaimComponent = () => {
     return (
       <>
-        <div className="drone-bt-icon">
-          <img src={drone} alt="drone" />
+        <div className='drone-bt-icon'>
+          <img src={drone} alt='drone' />
         </div>
-        <p className="claim">{claims} CLAIMS LEFT IN YOUR WALLET</p>
-        <p className="" id="address-text">
+        <p className='claim'>{claims} CLAIMS LEFT IN YOUR WALLET</p>
+        <p className='' id='address-text'>
           Connected with {address.slice(0, 5)}...{address.slice(-3)}
         </p>
-        <p className="mint-num">
-          CLAIM : {num} DRONES{" "}
+        <p className='mint-num'>
+          CLAIM : {num} DRONES{' '}
           <button
             onClick={() => {
               if (num < claims) setNum(num + 1);
-            }}
-          >
-            {" "}
+            }}>
+            {' '}
             +
-          </button>{" "}
+          </button>{' '}
           <button
             onClick={() => {
               if (num > 0) {
                 setNum(num - 1);
               }
-            }}
-          >
-            -{" "}
+            }}>
+            -{' '}
           </button>
         </p>
-        <button onClick={mint} className="connect">
+        <button
+          // onClick={mint}
+          onClick={() => {
+            alert.error('Mint Disabled');
+          }}
+          style={{ backgroundColor: '#575757', color: '#bfbfbf' }}
+          // disabled='true'
+          className='connect'>
           MINT DRONES
         </button>
       </>
@@ -230,44 +235,43 @@ const Minting = () => {
 
   const LoadingPopup = () => {
     return (
-      <div className="modal">
-        <div className="overlay"></div>
-        <div className="modal-content">
-          <img src={loading} alt="Loading..." />
+      <div className='modal'>
+        <div className='overlay'></div>
+        <div className='modal-content'>
+          <img src={loading} alt='Loading...' />
         </div>
       </div>
     );
   };
 
   return (
-    <section className="mint-col">
+    <section className='mint-col'>
       {isloading ? <LoadingPopup /> : null}
       {!partyTime ? (
         <>
-          <p className="timer-title" style={{ color: "#fff" }}>
+          <p className='timer-title' style={{ color: '#fff' }}>
             MINT GOES LIVE IN
           </p>
-          <p className="timer">
+          <p className='timer'>
             {days} : {hours} : {minutes} : {seconds}
           </p>
         </>
       ) : mintComplete ? (
         <>
-          <p className="claim" style={{ color: "#fff" }}>
+          <p className='claim' style={{ color: '#fff' }}>
             YOU HAVE CLAIMED ALL YOUR DRONE
           </p>
-          <p className="claim" style={{ marginTop: "25px" }}>
+          <p className='claim' style={{ marginTop: '25px' }}>
             <a
-              target="_blank"
-              href="https://opensea.io/collection/afrodroids-by-owo"
-            >
-              VIEW COLLECTION ON OPENSEA{" "}
+              target='_blank'
+              href='https://opensea.io/collection/afrodroids-by-owo'>
+              VIEW COLLECTION ON OPENSEA{' '}
             </a>
           </p>
         </>
-      ) : status == "init" ? (
+      ) : status == 'init' ? (
         InitComponent()
-      ) : status == "connected" ? (
+      ) : status == 'connected' ? (
         ClaimComponent()
       ) : null}
     </section>
